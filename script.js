@@ -43,23 +43,50 @@ class Character {
       };
 };
 
-class Companion extends Character {
-    constructor(name, type) {
-      super(name);
-        this.type = type;
-    }
-}
-
 const robin = new Character("Robin");
 robin.inventory = ["sword", "potion", "artifact"];
-
-const leo = new Companion("Leo", "Cat");
-const frank = new Companion("Frank", "Flea");
-frank.inventory = ["small hat", "sunglasses"];
-robin.companion = leo;
-robin.companion.companion = frank;
+robin.companion = new Character("Leo");
+robin.companion.type = "Cat";
+robin.companion.companion = new Character("Frank");
+robin.companion.companion.type = "Flea";
+robin.companion.companion.inventory = ["small hat", "sunglasses"];
 robin.roll();
-leo.roll(); 
-frank.roll(); 
+robin.companion.companion.roll();
+robin.companion.roll()
 
 
+// class Companion extends Character {
+//     constructor(name, type) {
+//       super(name);
+//         this.type = type;
+//     }
+// }
+
+//Part3: Class features
+
+class Adventurer extends Character {
+    constructor (name, role) {
+      super(name);
+      // Adventurers have specialized roles.
+      this.role = role;
+      // Every adventurer starts with a bed and 50 gold coins.
+      this.inventory.push("bedroll", "50 gold coins");
+      this.skills = [];
+      this.experience = 0;
+    }
+    // Adventurers have the ability to scout ahead of them.
+    scout () {
+      console.log(`${this.name} is scouting ahead...`);
+      super.roll();
+    }
+
+   getExperience(amount) {
+        this.experience += amount;
+        console.log(`${this.name} gained ${amount} experience points.`);
+    }
+
+    getSkills(skill){
+        this.skills.push(skill);
+        console.log(`${this.name} learned a new skill: ${skill}.`);
+    }
+  }
