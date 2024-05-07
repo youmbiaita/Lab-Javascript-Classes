@@ -55,12 +55,7 @@ robin.companion.companion.roll();
 robin.companion.roll()
 
 
-// class Companion extends Character {
-//     constructor(name, type) {
-//       super(name);
-//         this.type = type;
-//     }
-// }
+
 
 //Part3: Class features
 
@@ -90,3 +85,37 @@ class Adventurer extends Character {
         console.log(`${this.name} learned a new skill: ${skill}.`);
     }
   }
+
+  // Companion class
+
+  class Companion extends Character {
+    constructor(name, type) {
+      super(name);
+      this.type = type; // Type of the companion (e.g., Cat, Dog, etc.)
+      this.tricks = []; // Array to store tricks the companion can perform
+    }
+  
+    // Method for the companion to perform a trick
+    performTrick(trick) {
+      console.log(`${this.name} performs ${trick}!`);
+    }
+  
+    // Method to teach the companion a new trick
+    teachTrick(trick) {
+      this.tricks.push(trick);
+      console.log(`${this.name} learned a new trick: ${trick}.`);
+    }
+  }
+
+  //Change the declaration of Robin and the companions using new Adventurer and Companion classes.
+
+  const robin2 = new Adventurer("Robin");
+  robin2.inventory = ["sword", "potion", "artifact"];
+  robin2.companion = new Companion("Leo");
+  robin2.companion.type = "Cat";
+  robin2.companion.companion = new Companion("Frank");
+  robin2.companion.companion.type = "Flea";
+  robin2.companion.companion.inventory = ["small hat", "sunglasses"];
+  robin2.roll();
+  robin2.companion.companion.roll();
+  robin2.companion.roll()
