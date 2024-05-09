@@ -68,6 +68,7 @@ robin.companion.companion.getHealth();
 //Part3: Class features
 
 class Adventurer extends Character {
+  //part4 
   static ROLES = ["Fighter", "Healer", "Wizard"];
   constructor(name, role) {
     super(name);
@@ -136,6 +137,41 @@ robin2.getExperience(3);
 robin2.getSkills("dentist");
 robin2.companion.performTrick("trick");
 robin2.companion.teachTrick("trick");
+
+
 //Part4: Class Uniforms 
+
+class AdventurerFactory {  
+  constructor (role) {
+    this.role = role;
+    this.adventurers = [];
+  }
+  generate (name) {
+    const newAdventurer = new Adventurer(name, this.role);
+    this.adventurers.push(newAdventurer);
+    return newAdventurer;
+  }
+  findByIndex (index) {
+    return this.adventurers[index];
+  }
+  findByName (name) {
+    return this.adventurers.find((a) => a.name === name);
+  }
+}
+
+const healers = new AdventurerFactory("Healer");
+const robin3 = healers.generate("Robin");
+
+class Healer extends Adventurer {
+constructor(name){
+  super(name, "Healer");
+  this.healing = [];
+}
+}
+
+const robin5 = new Healer("Robin")
+
+
+
 
 
